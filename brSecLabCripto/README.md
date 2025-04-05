@@ -1,5 +1,17 @@
 # Pacote Poetry brseclabcripto
 
+## Ativar o env
+
+```console
+source env/bin/activate
+```
+
+## Instalar
+
+```console
+poetry install
+```
+
 ## Login
 
 ```console
