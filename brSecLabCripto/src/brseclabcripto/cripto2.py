@@ -251,3 +251,11 @@ def sha256_verify(message, hash_value):
     digest = hashes.Hash(hashes.SHA3_256())
     digest.update(message)
     return digest.finalize() == hash_value
+
+def generate_aes_key():
+    '''
+    Generates a random AES key.
+    :return: AES key - hexadecimal string
+    '''
+    return secrets.token_bytes(32).hex()  # 256-bit key
+

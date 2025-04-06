@@ -4,6 +4,7 @@ Automated tests for the cripto module.
 import secrets
 from brseclabcripto.cripto2 import aes_gcm_encrypt, aes_gcm_decrypt, gpg_encrypt, gpg_decrypt, hash_argon2id, hash_argon2id_verify
 from brseclabcripto.cripto2 import hash_hmac, hash_hmac_verify, sha256, sha256_verify
+from brseclabcripto.cripto2 import generate_aes_key
 
 def test_aes_gcm_encrypt_decrypt():
     '''
@@ -100,3 +101,18 @@ def test_hash_sha256():
     assert sha256_verify(message, hash_value) is True
     # Verify the hash with an incorrect message
     assert sha256_verify('wrongmessage', hash_value) is False
+    
+def test_generate_aes_key():
+    '''
+    Test the AES key generation function.
+    1. Generate a key.
+    2. Check that the key is not empty.
+    3. Check that the key length is correct.
+    '''
+    # Generate a key
+    key = generate_aes_key()
+    # Check that the key is not empty
+    assert len(key) > 0
+    # Check that the key length is correct (256 bits)
+    assert len(bytes.fromhex(key)) == 32
+

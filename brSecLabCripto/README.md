@@ -1,31 +1,45 @@
 # Pacote Poetry brseclabcripto
 
-## Ativar o env
+## Instalação
 
 ```console
-source env/bin/activate
+pip install brseclabcripto
 ```
 
-## Instalar
+## Uso
+
+### Importar biblioteca
 
 ```console
-poetry install
+from brseclabcripto import cripto2
 ```
 
-## Login
+### Gerar chave
 
-```console
-poetry config pypi-token.pypi your-api-token
+```python
+key = cripto2.generate_aes_key()
 ```
 
-## Build
+### Criptografar string
 
-```console
-poetry build
+```python
+ciphertext = cripto2.aes_gcm_encrypt(key,"TEXTO")
 ```
 
-## Publish
+### Decriptar
 
-```console
-poetry publish
+```python
+decriptado = cripto2.aes_gcm_decrypt(key,ciphertext)
+```
+
+### Gerar hash com argon2id
+
+```python
+hash_argon = hash_argon2id(key,password)
+```
+
+### Verificar hash argon2id
+
+```python
+hash_argon2id_verify(hash_argon, key,password)
 ```
