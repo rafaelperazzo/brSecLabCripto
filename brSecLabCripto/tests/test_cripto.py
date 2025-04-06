@@ -3,7 +3,7 @@ Automated tests for the cripto module.
 '''
 import secrets
 from brseclabcripto.cripto2 import aes_gcm_encrypt, aes_gcm_decrypt, gpg_encrypt, gpg_decrypt, hash_argon2id, hash_argon2id_verify
-from brseclabcripto.cripto2 import hash_hmac, hash_hmac_verify
+from brseclabcripto.cripto2 import hash_hmac, hash_hmac_verify, sha256, sha256_verify
 
 def test_aes_gcm_encrypt_decrypt():
     '''
@@ -82,4 +82,21 @@ def test_hmac():
     assert hash_hmac_verify(key, message,hmac_value) is True
     # Verify the HMAC with an incorrect message
     assert hash_hmac_verify(key, 'wrongmessage',hmac_value) is False
-    
+
+def test_hash_sha256():
+    '''
+    Test the SHA256 hashing function.
+    1. Hash a known message.
+    2. Check that the hash is not empty.
+    3. Verify the hash with the correct message.
+    4. Verify the hash with an incorrect message.
+    '''
+    # Test with a known message
+    message = 'This is a test.'
+    hash_value = sha256(message)
+    # Check that the hash is not empty
+    assert len(hash_value) > 0
+    # Verify the hash with the correct message
+    assert sha256_verify(message, hash_value) is True
+    # Verify the hash with an incorrect message
+    assert sha256_verify('wrongmessage', hash_value) is False

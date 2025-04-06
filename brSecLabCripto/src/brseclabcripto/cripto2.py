@@ -1,8 +1,8 @@
 '''
 Functions for AES256-GCM encryption/decryption (pyca/cryptography and gpg) and Argon2 hashing.
 This module provides functions to generate an AES key, encrypt and decrypt messages,
-and hash and verify passwords using Argon2.
-It uses the PyCryptodome library for AES encryption and Argon2 for password hashing.
+and hash and verify passwords using Argon2 and SHA3-256.
+It uses the criptography library for AES encryption and Argon2 for password hashing.
 It is important to note that the AES key should be kept secret and secure.
 The Argon2 hash should also be stored securely, as it is used to verify passwords.
 This module is intended for educational purposes and should not be used in 
@@ -30,7 +30,14 @@ def aes_gcm_encrypt(key, plaintext):
     '''
     if isinstance(key, str):
         # Convert hexadecimal string key to bytes
-        key = bytes.fromhex(key)
+        try:
+            key = bytes.fromhex(key)
+        except ValueError as exc:
+            # If the key is not a valid hexadecimal string, raise an error
+            raise ValueError("Invalid key format. Key must be a hexadecimal string.") from exc
+    if len(key) not in (16, 24, 32):
+        # Check if the key length is valid
+        raise ValueError("Invalid key length. Key must be 16, 24, or 32 bytes long.")
     if isinstance(plaintext, str):
         # Convert string plaintext to bytes
         plaintext = plaintext.encode()
@@ -49,7 +56,14 @@ def aes_gcm_decrypt(key, ciphertext):
     '''
     if isinstance(key, str):
         # Convert hexadecimal string key to bytes
-        key = bytes.fromhex(key)
+        try:
+            key = bytes.fromhex(key)
+        except ValueError as exc:
+            # If the key is not a valid hexadecimal string, raise an error
+            raise ValueError("Invalid key format. Key must be a hexadecimal string.") from exc
+    if len(key) not in (16, 24, 32):
+        # Check if the key length is valid
+        raise ValueError("Invalid key length. Key must be 16, 24, or 32 bytes long.")
     if isinstance(ciphertext, str):
         # Convert base64 string ciphertext to bytes
         ciphertext = base64.b64decode(ciphertext)
@@ -92,7 +106,14 @@ def hash_hmac(key, message):
     '''
     if isinstance(key, str):
         # Convert hexadecimal string key to bytes
-        key = bytes.fromhex(key)
+        try:
+            key = bytes.fromhex(key)
+        except ValueError as exc:
+            # If the key is not a valid hexadecimal string, raise an error
+            raise ValueError("Invalid key format. Key must be a hexadecimal string.") from exc
+    if len(key) not in (16, 24, 32):
+        # Check if the key length is valid
+        raise ValueError("Invalid key length. Key must be 16, 24, or 32 bytes long.")
     if isinstance(message, str):
         # Convert string message to bytes
         message = message.encode()
@@ -111,7 +132,14 @@ def hash_hmac_verify(key, message, hmac_value):
 
     if isinstance(key, str):
         # Convert hexadecimal string key to bytes
-        key = bytes.fromhex(key)
+        try:
+            key = bytes.fromhex(key)
+        except ValueError as exc:
+            # If the key is not a valid hexadecimal string, raise an error
+            raise ValueError("Invalid key format. Key must be a hexadecimal string.") from exc
+    if len(key) not in (16, 24, 32):
+        # Check if the key length is valid
+        raise ValueError("Invalid key length. Key must be 16, 24, or 32 bytes long.")
     if isinstance(message, str):
         # Convert string message to bytes
         message = message.encode()
@@ -139,7 +167,14 @@ def hash_argon2id(key, password):
     '''
     if isinstance(key, str):
         # Convert hexadecimal string key to bytes
-        key = bytes.fromhex(key)
+        try:
+            key = bytes.fromhex(key)
+        except ValueError as exc:
+            # If the key is not a valid hexadecimal string, raise an error
+            raise ValueError("Invalid key format. Key must be a hexadecimal string.") from exc
+    if len(key) not in (16, 24, 32):
+        # Check if the key length is valid
+        raise ValueError("Invalid key length. Key must be 16, 24, or 32 bytes long.")
     if isinstance(password, str):
         # Convert string password to bytes
         password = password.encode()
@@ -161,7 +196,14 @@ def hash_argon2id_verify(hash_argon, key, password):
     '''
     if isinstance(key, str):
         # Convert hexadecimal string key to bytes
-        key = bytes.fromhex(key)
+        try:
+            key = bytes.fromhex(key)
+        except ValueError as exc:
+            # If the key is not a valid hexadecimal string, raise an error
+            raise ValueError("Invalid key format. Key must be a hexadecimal string.") from exc
+    if len(key) not in (16, 24, 32):
+        # Check if the key length is valid
+        raise ValueError("Invalid key length. Key must be 16, 24, or 32 bytes long.")
     if isinstance(password, str):
         # Convert string password to bytes
         password = password.encode()
@@ -176,3 +218,36 @@ def hash_argon2id_verify(hash_argon, key, password):
     except argon2.exceptions.VerifyMismatchError:
         return False
 
+def sha256(message):
+    '''
+    Computes the SHA3-256 hash of the given message.
+    :param message: message to be hashed - bytes or string
+    :return: SHA3-256 hash - hexadecimal string
+    '''
+    if isinstance(message, str):
+        # Convert string message to bytes
+        message = message.encode()
+    digest = hashes.Hash(hashes.SHA3_256())
+    digest.update(message)
+    return digest.finalize().hex()
+
+def sha256_verify(message, hash_value):
+    '''
+    Verifies if the SHA3-256 hash matches the message.
+    :param message: message to be verified - bytes or string
+    :param hash_value: SHA3-256 hash to be verified - bytes or hexadecimal string
+    :return: True if the hash is valid, False otherwise
+    '''
+    if isinstance(message, str):
+        # Convert string message to bytes
+        message = message.encode()
+    if isinstance(hash_value, str):
+        # Convert hexadecimal string hash to bytes
+        try:
+            hash_value = bytes.fromhex(hash_value)
+        except ValueError:
+            # If the hash is not a valid hexadecimal string, return False
+            return False
+    digest = hashes.Hash(hashes.SHA3_256())
+    digest.update(message)
+    return digest.finalize() == hash_value
