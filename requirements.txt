@@ -3,7 +3,7 @@ argon2-cffi==23.1.0
 argon2-cffi-bindings==21.2.0
 bandit==1.8.3
 black==25.1.0
--e git+https://git@github.com/rafaelperazzo/brSecLabCripto.git@8e9acd96e5d688960feaec21665e8a83c5af8602#egg=brseclabcripto
+-e git+ssh://git@github.com/rafaelperazzo/brSecLabCripto.git@90897c447d5770ee2b90279dbdc99a2a8d40d801#egg=brseclabcripto
 build==1.2.2.post1
 CacheControl==0.14.2
 certifi==2025.1.31
