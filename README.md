@@ -6,7 +6,11 @@
 
 ## ✨ Funcionalidades
 
+<<<<<<< HEAD
 - 🔒 **Criptografia Simétrica (AES-256-GCM)**
+=======
+- 🔒 **Criptografia Simétrica (AES-256-GCM, GNUPG)**
+>>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
   - Criptografa e descriptografa dados usando uma chave secreta.
   
 - 🧾 **Hash de Dados (SHA3-256)**
@@ -22,9 +26,17 @@
 
 - 📦 Design modular e extensível
 
+<<<<<<< HEAD
 ## 💻 Instalação
+=======
+## Requisitos
 
-Você pode instalar o pacote localmente clonando o repositório:
+- Python 3.10 ou superior
+
+## 📦 Instalação
+>>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
+
+Você pode instalar o pacote localmente instalando o pacote pip:
 
 ```bash
 pip install brseclabcripto
@@ -32,6 +44,7 @@ pip install brseclabcripto
 
 ## 💣 Uso
 
+<<<<<<< HEAD
 ### 📘 Importando o módulo
 
 ```python
@@ -79,3 +92,18 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um issue.
 ## 👨 Autor
 
 RAFAEL PERAZZO
+=======
+Em construção
+
+## Licença
+
+Este projeto está licenciado sob a GNU GENERAL PUBLIC LICENSE. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um **issue**.
+
+## Autor
+
+RAFAEL PERAZZO BARBOSA MOTA
+>>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
