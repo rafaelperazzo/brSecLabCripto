@@ -10,6 +10,9 @@
 - 🧾 **Hash de Dados (SHA3-256)**
   - Criação de hash para verificar integridade de mensagens.
 
+- 🧾 **Hash de Senhas (argon2Id com HMAC SHA3-256)**
+  - Criação de hash armazenamento seguro de senhas.
+
 - 🔐 **Geração de Chaves Seguras**
   - Geração de chaves criptograficamente seguras.
 
