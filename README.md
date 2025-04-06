@@ -16,10 +16,15 @@
 - 🧾 **Hash de Dados (SHA3-256)**
   - Criação de hash para verificar integridade de mensagens.
 
+<<<<<<< HEAD
 - 🧾 **Hash de Senhas (argon2Id)**
   - Criação de hash armazenamento seguro de senhas.
   - Verificação de senhas usando o algoritmo Argon2Id.
   - Proteção contra ataques de força bruta e dicionário.
+=======
+- 🧾 **Hash de Senhas (argon2Id com HMAC SHA3-256)**
+  - Criação de hash armazenamento seguro de senhas.
+>>>>>>> d5013cb (docs: Incluído recurso do argon2 no readme)
 
 - 🔐 **Geração de Chaves Seguras**
   - Geração de chaves criptograficamente seguras com Python Secrets.
