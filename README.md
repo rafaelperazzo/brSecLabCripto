@@ -4,7 +4,7 @@
 
 ## ✨ Funcionalidades
 
-- 🔒 **Criptografia Simétrica (AES)**
+- 🔒 **Criptografia Simétrica (AES-256-GCM, GNUPG)**
   - Criptografa e descriptografa dados usando uma chave secreta.
   
 - 🧾 **Hash de Dados (SHA3-256)**
@@ -15,9 +15,13 @@
 
 - 📦 Design modular e extensível
 
+## Requisitos
+
+- Python 3.10 ou superior
+
 ## 📦 Instalação
 
-Você pode instalar o pacote localmente clonando o repositório:
+Você pode instalar o pacote localmente instalando o pacote pip:
 
 ```bash
 pip install brseclabcripto
@@ -26,3 +30,15 @@ pip install brseclabcripto
 ## Uso
 
 Em construção
+
+## Licença
+
+Este projeto está licenciado sob a GNU GENERAL PUBLIC LICENSE. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um **issue**.
+
+## Autor
+
+RAFAEL PERAZZO BARBOSA MOTA
