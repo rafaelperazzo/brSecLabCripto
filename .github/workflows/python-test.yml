@@ -35,3 +35,13 @@ jobs:
         run: poetry install
       - name: Run the automated tests (for example)
         run: poetry run pytest -v
+      - name: enviando comandos ssh
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            whoami
+            ls -al
