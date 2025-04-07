@@ -1,0 +1,47 @@
+# This workflow will test a Python Package when a commit is pushed to the develop branch.
+# It will set up Python, install dependencies, and run tests using pytest.
+# The workflow is triggered on pushes to the develop branch.
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+
+name: Test Python Package
+
+on:
+  push:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v4
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v4
+      - name: Setup a local virtual environment (if no poetry.toml file)
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+      - name: Install the project dependencies
+        run: poetry install
+      - name: Run the automated tests (for example)
+        run: poetry run pytest -v
+      #- name: enviando comandos ssh
+      #  uses: appleboy/ssh-action@v1
+      #  with:
+      #    host: ${{ secrets.HOST }}
+      #    username: ${{ secrets.USERNAME }}
+      #    key: ${{ secrets.KEY }}
+      #    port: ${{ secrets.PORT }}
+      #    script: |
+      #      whoami
+      #      ls -al
