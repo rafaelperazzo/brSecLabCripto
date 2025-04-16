@@ -159,3 +159,35 @@ def test_aes_gcm_encrypt_pdf():
     # Clean up
     os.remove(ciphertext_file)
     os.remove('test_dec.pdf')
+
+def test_gpg_encrypt_file():
+    """
+    Test the GPG encryption and decryption functions with a file.
+    1. Encrypt a known plaintext file with a known key.
+    2. Check that the ciphertext file is not equal to the plaintext file.
+    3. Check that the ciphertext file is not empty.
+    4. Decrypt the ciphertext file.
+    5. Check that the decrypted plaintext file is equal to the original plaintext file.
+    """
+    key = secrets.token_bytes(32)  # 32 bytes key for AES-256
+    plaintext_file = 'teste.pdf'
+    ciphertext_file = 'test.pdf.enc'
+    sec_cripto = SecCripto(key)
+    sec_cripto.aes_gpg_encrypt_file("123456",plaintext_file, ciphertext_file)
+    sec_cripto.aes_gpg_decrypt_file("123456",ciphertext_file, 'test_dec.pdf')
+    assert filecmp.cmp(plaintext_file, 'test_dec.pdf', shallow=False) is True
+    #Clean up
+    os.remove(ciphertext_file)
+    os.remove('test_dec.pdf')
+    
+def test_gpg_decrypt_bin_file():
+    """
+    Test the GPG decryption of a binary file.
+    """
+    sec_cripto = SecCripto(secrets.token_bytes(32))
+    ciphertext_file = 'teste.gpg'
+    dec_file = 'teste_dec.pdf'
+    passphrase = 'Cruelly4-Monoxide4-Grasp4-Relieve4-Overpower4'
+    sec_cripto.aes_gpg_decrypt_file(passphrase,ciphertext_file, dec_file)
+    assert filecmp.cmp('teste.pdf', dec_file, shallow=False) is True
+    os.remove(dec_file)

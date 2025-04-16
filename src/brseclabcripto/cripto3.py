@@ -20,6 +20,7 @@ from cryptography.hazmat.primitives import hashes, hmac
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import argon2
 from argon2 import PasswordHasher
+import gnupg
 
 class SecCripto:
     """
@@ -111,6 +112,30 @@ class SecCripto:
         plaintext = cipher.decrypt(nonce, ciphertext, None)
         with open(plaintext_file, "wb") as f:
             f.write(plaintext)
+    
+    def aes_gpg_encrypt_file(self, key,plaintext_file, ciphertext_file):
+        """
+        Encrypts a file using GPG encryption.
+        :param plaintext_file: path to the plaintext file - string
+        :param ciphertext_file: path to the ciphertext file - string
+        """
+        gpg = gnupg.GPG()
+        with open(plaintext_file, "rb") as f:
+            encrypted_data = gpg.encrypt_file(f,passphrase=key, symmetric="AES256", recipients=None)
+        with open(ciphertext_file, "wb") as f:
+            f.write(encrypted_data.data)
+    
+    def aes_gpg_decrypt_file(self, key, ciphertext_file, plaintext_file):
+        """
+        Decrypts a file using GPG decryption.
+        :param ciphertext_file: path to the ciphertext file - string
+        :param plaintext_file: path to the plaintext file - string
+        """
+        gpg = gnupg.GPG()
+        with open(ciphertext_file, "rb") as f:
+            decrypted_data = gpg.decrypt_file(f, passphrase=key)
+        with open(plaintext_file, "wb") as f:
+            f.write(decrypted_data.data)
     
     def hash_hmac(self,message):
         """
