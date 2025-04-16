@@ -8,6 +8,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - 🔒 **Criptografia Simétrica (AES-256-GCM, GNUPG)**
 =======
 - 🔒 **Criptografia Simétrica (AES-256-GCM)**
@@ -18,6 +19,9 @@
 - 🔒 **Criptografia Simétrica (AES-256-GCM, GNUPG)**
 >>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
 >>>>>>> develop
+=======
+- 🔒 **Criptografia Simétrica (AES-256-GCM)**
+>>>>>>> develop
   - Criptografa e descriptografa dados usando uma chave secreta.
   
 - 🧾 **Hash de Dados (SHA3-256)**
@@ -25,15 +29,19 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - 🧾 **Hash de Senhas (argon2Id com HMAC SHA3-256)**
   - Criação de hash armazenamento seguro de senhas.
 =======
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 - 🧾 **Hash de Senhas (argon2Id)**
   - Criação de hash armazenamento seguro de senhas.
   - Verificação de senhas usando o algoritmo Argon2Id.
   - Proteção contra ataques de força bruta e dicionário.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> develop
 =======
@@ -42,12 +50,15 @@
   - Criação de hash armazenamento seguro de senhas.
 >>>>>>> d5013cb (docs: Incluído recurso do argon2 no readme)
 >>>>>>> develop
+=======
+>>>>>>> develop
 
 - 🔐 **Geração de Chaves Seguras**
   - Geração de chaves criptograficamente seguras com Python Secrets.
 
 - 📦 Design modular e extensível
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -66,6 +77,9 @@
 =======
 >>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
 >>>>>>> develop
+=======
+## 💻 Instalação
+>>>>>>> develop
 
 Você pode instalar o pacote localmente instalando o pacote pip:
 
@@ -75,6 +89,7 @@ pip install brseclabcripto
 
 ## 💣 Uso
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 Em construção
@@ -93,10 +108,17 @@ RAFAEL PERAZZO BARBOSA MOTA
 =======
 =======
 >>>>>>> develop
+=======
+>>>>>>> develop
 ### 📘 Importando o módulo
 
 ```python
 from brseclabcripto import cripto2
+from brseclabcripto.cripto3 import SecCripto #classe
+```
+
+```python
+from brseclabcripto.cripto3 import SecCripto #classe
 ```
 
 ### 🔑 Gerar chave
@@ -105,10 +127,18 @@ from brseclabcripto import cripto2
 key = cripto2.generate_aes_key()
 ```
 
+```python
+key = SecCripto.generate_aes_key()
+```
+
 ### 🔐 Criptografar string
 
 ```python
 ciphertext = cripto2.aes_gcm_encrypt(key,"TEXTO")
+```
+
+```python
+ciphertext = SecCripto.aes_gcm_encrypt("TEXTO")
 ```
 
 ### 🔓 Decriptar
@@ -117,16 +147,28 @@ ciphertext = cripto2.aes_gcm_encrypt(key,"TEXTO")
 decriptado = cripto2.aes_gcm_decrypt(key,ciphertext)
 ```
 
+```python
+decriptado = SecCripto.aes_gcm_decrypt(ciphertext)
+```
+
 ### 🧾 Gerar hash com argon2id
 
 ```python
 hash_argon = hash_argon2id(key,password)
 ```
 
+```python
+hash_argon = SecCripto.hash_argon2id(password)
+```
+
 ### ⁉️ Verificar hash argon2id
 
 ```python
 hash_argon2id_verify(hash_argon, key,password)
+```
+
+```python
+SecCripto.hash_argon2id_verify(hash_argon, password)
 ```
 
 ## 💸 Licença
@@ -140,6 +182,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um issue.
 ## 👨 Autor
 
 RAFAEL PERAZZO
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> develop
 =======
@@ -158,4 +201,6 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um **issue**.
 
 RAFAEL PERAZZO BARBOSA MOTA
 >>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
+>>>>>>> develop
+=======
 >>>>>>> develop
