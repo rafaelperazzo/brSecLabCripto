@@ -20,6 +20,7 @@ from cryptography.hazmat.primitives import hashes, hmac
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import argon2
 from argon2 import PasswordHasher
+import gnupg
 
 class SecCripto:
     """
@@ -81,6 +82,60 @@ class SecCripto:
         cipher = AESGCM(self.key)
         plaintext = cipher.decrypt(nonce, ciphertext, None)
         return plaintext.decode("utf-8")
+    
+    def aes_gcm_encrypt_file(self, plaintext_file, ciphertext_file):
+        """
+        Encrypts a file using AES GCM encryption with a random nonce.
+        :param plaintext_file: path to the plaintext file - string
+        :param ciphertext_file: path to the ciphertext file - string
+        """
+        with open(plaintext_file, "rb") as f:
+            plaintext = f.read()
+        cipher = AESGCM(self.key)
+        nonce = secrets.token_bytes(12)  # Generate a random nonce
+        ciphertext = cipher.encrypt(nonce, plaintext, None)
+        with open(ciphertext_file, "wb") as f:
+            f.write(base64.b64encode(nonce + ciphertext))
+    
+    def aes_gcm_decrypt_file(self, ciphertext_file, plaintext_file):
+        """
+        Decrypts a file using AES GCM decryption.
+        :param ciphertext_file: path to the ciphertext file - string
+        :param plaintext_file: path to the plaintext file - string
+        """
+        with open(ciphertext_file, "rb") as f:
+            ciphertext = f.read()
+        ciphertext = base64.b64decode(ciphertext)
+        nonce = ciphertext[:12]
+        ciphertext = ciphertext[12:]
+        cipher = AESGCM(self.key)
+        plaintext = cipher.decrypt(nonce, ciphertext, None)
+        with open(plaintext_file, "wb") as f:
+            f.write(plaintext)
+    
+    def aes_gpg_encrypt_file(self, key,plaintext_file, ciphertext_file):
+        """
+        Encrypts a file using GPG encryption.
+        :param plaintext_file: path to the plaintext file - string
+        :param ciphertext_file: path to the ciphertext file - string
+        """
+        gpg = gnupg.GPG()
+        with open(plaintext_file, "rb") as f:
+            encrypted_data = gpg.encrypt_file(f,passphrase=key, symmetric="AES256", recipients=None)
+        with open(ciphertext_file, "wb") as f:
+            f.write(encrypted_data.data)
+    
+    def aes_gpg_decrypt_file(self, key, ciphertext_file, plaintext_file):
+        """
+        Decrypts a file using GPG decryption.
+        :param ciphertext_file: path to the ciphertext file - string
+        :param plaintext_file: path to the plaintext file - string
+        """
+        gpg = gnupg.GPG()
+        with open(ciphertext_file, "rb") as f:
+            decrypted_data = gpg.decrypt_file(f, passphrase=key)
+        with open(plaintext_file, "wb") as f:
+            f.write(decrypted_data.data)
     
     def hash_hmac(self,message):
         """
