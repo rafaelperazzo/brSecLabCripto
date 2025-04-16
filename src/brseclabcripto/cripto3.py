@@ -82,6 +82,36 @@ class SecCripto:
         plaintext = cipher.decrypt(nonce, ciphertext, None)
         return plaintext.decode("utf-8")
     
+    def aes_gcm_encrypt_file(self, plaintext_file, ciphertext_file):
+        """
+        Encrypts a file using AES GCM encryption with a random nonce.
+        :param plaintext_file: path to the plaintext file - string
+        :param ciphertext_file: path to the ciphertext file - string
+        """
+        with open(plaintext_file, "rb") as f:
+            plaintext = f.read()
+        cipher = AESGCM(self.key)
+        nonce = secrets.token_bytes(12)  # Generate a random nonce
+        ciphertext = cipher.encrypt(nonce, plaintext, None)
+        with open(ciphertext_file, "wb") as f:
+            f.write(base64.b64encode(nonce + ciphertext))
+    
+    def aes_gcm_decrypt_file(self, ciphertext_file, plaintext_file):
+        """
+        Decrypts a file using AES GCM decryption.
+        :param ciphertext_file: path to the ciphertext file - string
+        :param plaintext_file: path to the plaintext file - string
+        """
+        with open(ciphertext_file, "rb") as f:
+            ciphertext = f.read()
+        ciphertext = base64.b64decode(ciphertext)
+        nonce = ciphertext[:12]
+        ciphertext = ciphertext[12:]
+        cipher = AESGCM(self.key)
+        plaintext = cipher.decrypt(nonce, ciphertext, None)
+        with open(plaintext_file, "wb") as f:
+            f.write(plaintext)
+    
     def hash_hmac(self,message):
         """
         Computes the HMAC of the given message using the provided key.
