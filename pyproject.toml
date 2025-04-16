@@ -1,6 +1,6 @@
 [project]
 name = "brseclabcripto"
-version = "2.0.4"
+version = "2.0.5"
 description = "Biblioteca de criptografia para o projeto brSecLab"
 authors = [
     {name = "Rafael Perazzo",email = "pypi.quilt004@passmail.net"}

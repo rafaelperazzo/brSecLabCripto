@@ -7,9 +7,16 @@
 ## ✨ Funcionalidades
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - 🔒 **Criptografia Simétrica (AES-256-GCM, GNUPG)**
 =======
 - 🔒 **Criptografia Simétrica (AES-256-GCM)**
+>>>>>>> develop
+=======
+- 🔒 **Criptografia Simétrica (AES-256-GCM)**
+=======
+- 🔒 **Criptografia Simétrica (AES-256-GCM, GNUPG)**
+>>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
 >>>>>>> develop
   - Criptografa e descriptografa dados usando uma chave secreta.
   
@@ -17,13 +24,23 @@
   - Criação de hash para verificar integridade de mensagens.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - 🧾 **Hash de Senhas (argon2Id com HMAC SHA3-256)**
   - Criação de hash armazenamento seguro de senhas.
 =======
+=======
+>>>>>>> develop
 - 🧾 **Hash de Senhas (argon2Id)**
   - Criação de hash armazenamento seguro de senhas.
   - Verificação de senhas usando o algoritmo Argon2Id.
   - Proteção contra ataques de força bruta e dicionário.
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+=======
+- 🧾 **Hash de Senhas (argon2Id com HMAC SHA3-256)**
+  - Criação de hash armazenamento seguro de senhas.
+>>>>>>> d5013cb (docs: Incluído recurso do argon2 no readme)
 >>>>>>> develop
 
 - 🔐 **Geração de Chaves Seguras**
@@ -32,13 +49,22 @@
 - 📦 Design modular e extensível
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+## 💻 Instalação
+=======
+>>>>>>> develop
 ## Requisitos
 
 - Python 3.10 ou superior
 
 ## 📦 Instalação
+<<<<<<< HEAD
 =======
 ## 💻 Instalação
+>>>>>>> develop
+=======
+>>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
 >>>>>>> develop
 
 Você pode instalar o pacote localmente instalando o pacote pip:
@@ -49,6 +75,7 @@ pip install brseclabcripto
 
 ## 💣 Uso
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Em construção
 
@@ -64,6 +91,8 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um **issue**.
 
 RAFAEL PERAZZO BARBOSA MOTA
 =======
+=======
+>>>>>>> develop
 ### 📘 Importando o módulo
 
 ```python
@@ -111,4 +140,22 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um issue.
 ## 👨 Autor
 
 RAFAEL PERAZZO
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+=======
+Em construção
+
+## Licença
+
+Este projeto está licenciado sob a GNU GENERAL PUBLIC LICENSE. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um **issue**.
+
+## Autor
+
+RAFAEL PERAZZO BARBOSA MOTA
+>>>>>>> 08fe7ee (docs: Incluídas novas informações no readme)
 >>>>>>> develop
